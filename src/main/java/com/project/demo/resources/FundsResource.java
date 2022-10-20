@@ -14,6 +14,5 @@ public class FundsResource {
 	public ResponseEntity<Funds> findAll(){
 		Funds f = new Funds(1L, "123", "87328", "93849");
 		return ResponseEntity.ok().body(f);
-	}
-	
+	}	
 }
