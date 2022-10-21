@@ -53,13 +53,20 @@ public class TestConfig implements CommandLineRunner {
 		Investment i3 = new Investment(null, "Empresa 3");
 		Investment i4 = new Investment(null, "Empresa 4");
 		Investment i5 = new Investment(null, "Empresa 5"); 
-		
+	
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
 		investmentRepository.saveAll(Arrays.asList(i1, i2, i3, i4, i5));
-
+		
+		i1.getCategories().add(cat2);
+		i2.getCategories().add(cat1);
+		i3.getCategories().add(cat3);
+		i4.getCategories().add(cat1);
+		i5.getCategories().add(cat2);
+		
 		fundsRepository.saveAll(Arrays.asList(f1, f2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 		
+		investmentRepository.saveAll(Arrays.asList(i1, i2, i3, i4, i5));		
 	}
 }
