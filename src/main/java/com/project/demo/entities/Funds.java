@@ -1,12 +1,17 @@
 package com.project.demo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +24,10 @@ public class Funds implements Serializable {
 	private String account;
 	private String agency;
 	private String bank;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "contracted")
+	private List<Order> orders = new ArrayList<>();
 
 	public Funds() {
 
@@ -62,6 +71,10 @@ public class Funds implements Serializable {
 
 	public void setBank(String bank) {
 		this.bank = bank;
+	}
+	
+	public List<Order> getOrders() {
+		return orders;
 	}
 
 	@Override
