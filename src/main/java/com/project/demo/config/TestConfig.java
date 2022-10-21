@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.project.demo.entities.Category;
 import com.project.demo.entities.Funds;
+import com.project.demo.entities.Investment;
 import com.project.demo.entities.Order;
 import com.project.demo.entities.enums.OrderStatus;
 import com.project.demo.repositories.CategoryRepository;
 import com.project.demo.repositories.FundsRepository;
+import com.project.demo.repositories.InvestmentRepository;
 import com.project.demo.repositories.OrderRepository;
 
 @Configuration
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private InvestmentRepository investmentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -43,7 +48,15 @@ public class TestConfig implements CommandLineRunner {
 		Category cat2 = new Category(null, "Fixed Income Funds");
 		Category cat3 = new Category(null, "Real Estate Funds"); 
 		
+		Investment i1 = new Investment(null, "Empresa 1");
+		Investment i2 = new Investment(null, "Empresa 2");
+		Investment i3 = new Investment(null, "Empresa 3");
+		Investment i4 = new Investment(null, "Empresa 4");
+		Investment i5 = new Investment(null, "Empresa 5"); 
+		
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		
+		investmentRepository.saveAll(Arrays.asList(i1, i2, i3, i4, i5));
 
 		fundsRepository.saveAll(Arrays.asList(f1, f2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));

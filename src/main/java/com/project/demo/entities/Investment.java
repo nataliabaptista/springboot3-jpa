@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,25 +12,25 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "tb_category")
-public class Category implements Serializable {
+@Table(name = "tb_investment")
+public class Investment implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-
+	private String company;
+	
 	@Transient
-	private Set<Investment> investments = new HashSet<>();
-
-	public Category() {
+	private Set<Category> categories = new HashSet<>();
+	
+	public Investment() {
 	}
 
-	public Category(Long id, String name) {
+	public Investment(Long id, String company) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.company = company;
 	}
 
 	public Long getId() {
@@ -42,16 +41,16 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCompany(String company) {
+		this.company = company;
 	}
-	
-	public Set<Investment> getInvestments() {
-		return investments;
+
+	public Set<Category> getCategories() {
+		return categories;
 	}
 
 	@Override
@@ -67,7 +66,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Investment other = (Investment) obj;
 		return Objects.equals(id, other.id);
 	}
 }
